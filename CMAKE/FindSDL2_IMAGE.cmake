@@ -1,4 +1,4 @@
-# Locate SDL2_image library
+ # Locate SDL2_image library
 # This module defines
 # SDL2_IMAGE_LIBRARY, the name of the library to link against
 # SDL2_IMAGE_FOUND, if false, do not try to link to SDL2_image
