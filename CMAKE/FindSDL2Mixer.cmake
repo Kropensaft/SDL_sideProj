@@ -1,5 +1,5 @@
 # OpenClonk, http://www.openclonk.org
-#
+ #
 # Copyright (c) 2016, The OpenClonk Team and contributors
 #
 # Distributed under the terms of the ISC license; see accompanying file
