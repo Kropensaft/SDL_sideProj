@@ -1,7 +1,10 @@
 
+#include "headers/Game.h"
+#include "headers/renderer.h"
+
 int main() {
 
-    while(1) {
+
         //Game Loop
 
         //Call input handler
@@ -9,7 +12,7 @@ int main() {
         //Call update function
 
         //Call render function
+        Game game;
 
-    }
     return 0;
 }
