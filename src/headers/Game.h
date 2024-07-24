@@ -1,20 +1,27 @@
-//
-// Created by Kropen on 24.07.2024.
-//
+// headers/Game.h
 
 #ifndef GAME_H
 #define GAME_H
-#include "sdl2/SDL.h"
+
+#include <SDL2/SDL.h>
 #include <iostream>
 
 class Game {
+public:
+    Game();
+    virtual ~Game();
+
+    virtual void init(const char* title, int xpos, int ypos, int width, int height, bool fullscreen);
+    virtual void handleEvents();
+    virtual void update();
+    virtual void render();
+    virtual void clean();
+
+    bool running() const { return isRunning; }
+
 protected:
     bool isRunning;
-    SDL_Window * window_;
-public:
-    bool running() { return isRunning; }
-    void RunGame();
-    Game();
-    ~Game();
+    SDL_Window* window_;
 };
-#endif //GAME_H
+
+#endif // GAME_H

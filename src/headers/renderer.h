@@ -1,18 +1,21 @@
-//
-// Created by Kropen on 24.07.2024.
-//
+// headers/Renderer.h
 
 #ifndef RENDERER_H
 #define RENDERER_H
+
 #include "Game.h"
 
 class Renderer : public Game {
-private:
-    SDL_Renderer * renderer_;
 public:
-    void init(const char * title, int xpos, int ypos, int width, int height, bool fullscreen);
-    void render();
-    void clean();
+    Renderer();
+    ~Renderer();
 
+    void init(const char* title, int xpos, int ypos, int width, int height, bool fullscreen) override;
+    void render() override;
+    void clean() override;
+
+private:
+    SDL_Renderer* renderer_;
 };
-#endif //RENDERER_H
+
+#endif // RENDERER_H

@@ -1,44 +1,48 @@
-//
-// Created by Kropen on 24.07.2024.
-//
+// src/Renderer.cpp
 
 #include "headers/renderer.h"
 
-void Renderer::init(const char * title, int xpos, int ypos, int width, int height, bool fullscreen) {
-    int flags = 0; // ?  flags for window creation
-    if (fullscreen) // ? check whether fullsreen is enabled
-        flags = SDL_WINDOW_FULLSCREEN;
+// ? Constructor for the Renderer class
+Renderer::Renderer() : renderer_(NULL) {
+    std::cout << "Renderer constructor called" << std::endl;
+}
 
-    if (SDL_Init(SDL_INIT_EVERYTHING) == 0)
-        {
+// ? Destructor for the Renderer class
+Renderer::~Renderer() {
+    clean(); // ? Clean up resources
+    std::cout << "Renderer destructor called" << std::endl;
+}
 
-        // ? Debug message if SDL is correctly initialized
-        std::cout << "Subsystem Initialised!..." << std::endl;
+// ? Initialize the renderer
+void Renderer::init(const char* title, int xpos, int ypos, int width, int height, bool fullscreen) {
+    Game::init(title, xpos, ypos, width, height, fullscreen); // ? Call base class init
 
-        // ? Create a window using passed on values
-        window_ = SDL_CreateWindow(title, xpos, ypos, width, height, flags);
-
-        // ? Debug message based on succesfullness of creating a window
-        std::cout << (window_ ? "Window created!" : "Window creation failed!") << std::endl;
-
-        // ? Create a renderer for the window
-        renderer_ = SDL_CreateRenderer(window_, -1, 0);
-
-        if (renderer_)
-            SDL_SetRenderDrawColor(renderer_, 255, 255, 255, 255) , std::cout << "Renderer created!" << std::endl;
-
-        isRunning = true;
+    // ? Check if the window was created successfully
+    if (window_) {
+        renderer_ = SDL_CreateRenderer(window_, -1, 0); // ? Create a renderer for the window
+        if (renderer_) {
+            SDL_SetRenderDrawColor(renderer_, 255, 255, 255, 255); // ? Set the draw color to white
+            std::cout << "Renderer created!" << std::endl;
+        } else {
+            std::cout << "Renderer creation failed!" << std::endl; // ! Renderer creation failed
+        }
     }
-    else isRunning = false;
 }
 
+// ? Render the content
 void Renderer::render() {
-    SDL_RenderClear(renderer_);
+    SDL_RenderClear(renderer_); // ? Clear the renderer
     // ? Render stuff here
-    SDL_RenderPresent(renderer_);
+    SDL_RenderPresent(renderer_); // ? Present the rendered content
 }
 
+// ? Clean up the renderer and the window
 void Renderer::clean() {
-    SDL_DestroyWindow(window_);
-    SDL_DestroyRenderer(renderer_);
+    // ? Destroy the renderer if it exists
+    if (renderer_) {
+        SDL_DestroyRenderer(renderer_);
+        renderer_ = NULL;
+    }
+    Game::clean(); // ? Call base class clean
+    // ! Dont call destructor explicitly
 }

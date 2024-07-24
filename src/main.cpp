@@ -12,7 +12,15 @@ int main() {
         //Call update function
 
         //Call render function
-        Game game;
+        Renderer * renderer = new Renderer();
+        renderer->init("Game Title", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, false);
+        while (renderer->running()) {
+            renderer->handleEvents();
+            renderer->update();
+            renderer->render();
+        }
 
-    return 0;
+        renderer->clean();
+        delete renderer;
+        return 0;
 }
