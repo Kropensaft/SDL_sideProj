@@ -17,12 +17,13 @@ int main() {
     // ! Dont set the window to fullscreen without properly setting up an escape sequence
     renderer->init("Game Title", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, false);
     SDL_Event event;
-    while (renderer->running()) {
-        while (SDL_PollEvent(&event))
-            if (event.type == SDL_QUIT)
-                //Exit the game loop
-            renderer->handleEvents();
-        renderer->update();
+    while (renderer->running())
+    {
+        while (SDL_PollEvent(&event)) {
+            if (event.type == SDL_QUIT) {
+             // TODO setup escape sequence
+            }
+        }
         renderer->render();
     }
 
