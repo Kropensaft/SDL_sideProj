@@ -18,7 +18,7 @@ public:
     void clean() override;
 
 private:
-    SDL_Renderer *renderer_;
+    SDL_Renderer * renderer_;
 };
 
 #endif // RENDERER_H
