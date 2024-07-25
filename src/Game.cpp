@@ -1,8 +1,9 @@
 // src/Game.cpp
 
-#include "headers/Game.h"
+#include "include/Game.h"
 
-Game::Game() : isRunning(false), window_(NULL) {
+
+Game::Game() : isRunning(false), window_(nullptr, SDL_DestroyWindow) {
     std::cout << "Game constructor called" << std::endl;
 }
 
@@ -11,13 +12,13 @@ Game::~Game() {
     std::cout << "Game destructor called" << std::endl;
 }
 
-void Game::init(const char* title, int xpos, int ypos, int width, int height, bool fullscreen) {
+void Game::init(const char *title, int xpos, int ypos, int width, int height, bool fullscreen) {
     int flags = fullscreen ? SDL_WINDOW_FULLSCREEN : 0;
 
     if (SDL_Init(SDL_INIT_EVERYTHING) == 0) {
         std::cout << "Subsystem Initialized!..." << std::endl;
 
-        window_ = SDL_CreateWindow(title, xpos, ypos, width, height, flags);
+        window_.reset(SDL_CreateWindow(title, xpos, ypos, width, height, flags));
 
         if (window_) {
             std::cout << "Window created!" << std::endl;
@@ -40,15 +41,22 @@ void Game::update() {
     // TODO Implement game update logic
 }
 
-void Game::render() {
+void Game::render(SDL_Window *window_) {
     // TODO Implement game rendering logic
 }
 
 void Game::clean() {
     if (window_) {
-        SDL_DestroyWindow(window_);
-        window_ = NULL;
+        window_.reset();
     }
     SDL_Quit();
     std::cout << "Game cleaned up" << std::endl;
+}
+
+bool Game::running() {
+    return isRunning;
+}
+
+SDL_Window *Game::getWindow() {
+    return window_.get();
 }

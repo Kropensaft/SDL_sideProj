@@ -1,26 +1,30 @@
 
-#include "headers/Game.h"
-#include "headers/renderer.h"
+#include "include/Game.h"
+#include "include/renderer.h"
 
 int main() {
+    //Game Loop
 
+    //Call input handler
 
-        //Game Loop
+    //Call update function
 
-        //Call input handler
+    //Call render function
+    auto *renderer = new Renderer();
 
-        //Call update function
-
-        //Call render function
-        Renderer * renderer = new Renderer();
-        renderer->init("Game Title", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, false);
-        while (renderer->running()) {
+    renderer->init("Game Title", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, false);
+    SDL_Event event;
+    while (renderer->running()) {
+        while (SDL_PollEvent(&event))
+            if (event.type == SDL_QUIT)
+                //Exit the game loop
             renderer->handleEvents();
-            renderer->update();
-            renderer->render();
-        }
+        renderer->update();
+        renderer->render();
+    }
 
-        renderer->clean();
-        delete renderer;
-        return 0;
+    renderer->clean();
+
+    delete renderer;
+    return 0;
 }

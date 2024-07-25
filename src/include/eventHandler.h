@@ -8,11 +8,13 @@
 class EventHandler {
 private:
 
-    public:
+public:
     EventHandler();
-    ~EventHandler();
-    void handleEvents();
-    void handleInput();
 
+    ~EventHandler();
+
+    void handleEvents();
+
+    void handleInput();
 };
 #endif //EVENTHANDLER_H

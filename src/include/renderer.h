@@ -8,14 +8,17 @@
 class Renderer : public Game {
 public:
     Renderer();
+
     ~Renderer();
 
-    void init(const char* title, int xpos, int ypos, int width, int height, bool fullscreen) override;
-    void render() override;
+    void init(const char *title, int xpos, int ypos, int width, int height, bool fullscreen) override;
+
+    void render();
+
     void clean() override;
 
 private:
-    SDL_Renderer* renderer_;
+    SDL_Renderer *renderer_;
 };
 
 #endif // RENDERER_H
