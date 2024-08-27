@@ -20,10 +20,10 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/CMAKE")
 set(SOURCE_FILES
         src/main.cpp
         src/Game.cpp
-        src/include/Game.h
+        include/Game.h
         src/eventHandler.cpp
-        src/include/eventHandler.h
-        src/include/renderer.h
+        include/eventHandler.h
+        include/renderer.h
         src/renderer.cpp)
 
 Message("")

@@ -1,6 +1,6 @@
 // src/Game.cpp
 
-#include "include/Game.h"
+#include "../include//Game.h"
 
 
 Game::Game() : isRunning(false), window_(nullptr, SDL_DestroyWindow) {

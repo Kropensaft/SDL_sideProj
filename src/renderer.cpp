@@ -1,6 +1,6 @@
 // src/Renderer.cpp
 
-#include "include/renderer.h"
+#include "../include/renderer.h"
 
 // ? Constructor for the Renderer class
 Renderer::Renderer() : renderer_(nullptr) {
